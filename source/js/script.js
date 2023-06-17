@@ -43,7 +43,7 @@ function addItemButton() {
 }
 
 function warningMessage(){
-  warningDiv.innerHTML = `<p class="bg-red-500 text-center">Ya está en la lista</p>`
+  warningDiv.innerHTML = `<p class="bg-red-500 text-center text-white w-fit p-2 rounded-md text-xl	">Ya está en la lista</p>`
   setTimeout(() => {
     warningDiv.innerHTML = ""
     inputItem.value = ""
