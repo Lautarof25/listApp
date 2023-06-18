@@ -10,14 +10,13 @@
 </head>
 
 <body class="flex bg-orange-100 justify-center items-center relative">
-  <div id="warningDiv" class="linset-y-2.5 top-0 absolute animate-bounce">
+  <div id="warningDiv">
 
   </div>
   <main class="w-9/12">
     <h1
       class="mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
       ListApp</h1>
-
     <section>
 
       <div class="flex justify-center items-center mb-4">
@@ -25,21 +24,23 @@
         <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-500">Lista de
           compras</label>
       </div>
-      <div id="inputs">
-       
-        <div class="flex justify-center items-center gap-2	">
+
+      <div id="inputs" class="flex justify-center items-center gap-2">
+
+
           <input type="text" id="item"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Jabón" required>
-          <button id="addItem" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+          <button id="addItem" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full text-xl	">
             +
           </button>
-        </div>
 
       </div>
+
     </section>
 
     <section class="">
+      
       <ul id="list" class="flex justify-between	w-full w-full flex-col p-2">
 
       </ul>
@@ -50,7 +51,7 @@
 
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="./source/js/removeAccents.js"></script>
+  <script src="./source/js/normalizeValue.js"></script>
   <script src="./source/js/script.js"></script>
 </body>
 
