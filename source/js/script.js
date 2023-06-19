@@ -1,23 +1,62 @@
-const item = document.querySelector("#item")
+const itemInput = document.querySelector("#itemInput")
 const list = document.querySelector("#list")
+const buttonAdd = document.querySelector("#buttonAdd")
 
-item.addEventListener("keyup", addItemKeyboard)
+buttonAdd.addEventListener("click", addItemButton)
+// itemInput.addEventListener("input", addItemKeyboard)
 
 let arrayItems = []
 let index = 0
 
-function addItemKeyboard(e) {
-  let itemValue = normalizeItemValue(item.value)
-  if (e.key === 'Enter' && arrayItems.includes(itemValue)) {
-    createMessageRepeatItem()
-    removeMessageRepeatItem()
+function addItemButton() {
+  let itemValue = normalizeItemValue(itemInput.value)
+
+  if(itemValue === ""){
+    emptyMessage()
+    removeMessage()
+    itemInput.focus()
+  }else {
+    if (arrayItems.includes(itemValue) &&  itemValue !== "") {
+      createMessageRepeatItem()
+      removeMessage()
+      itemInput.focus()
+    }
+    if (!arrayItems.includes(itemValue) &&  itemValue !== "") {
+      index++
+      createItem(itemValue, index)
+      arrayItems.push(itemValue)
+      itemInput.value = ""
+      itemInput.focus()
+    }
   }
-  if (e.key === 'Enter' && !arrayItems.includes(itemValue)) {
-    index++
-    createItem(itemValue, index)
-    arrayItems.push(itemValue)
-    item.value = ""
-  }
+  
+}
+
+// function addItemKeyboard(e) {
+//   let itemValue = normalizeItemValue(itemInput.value)
+//   if(e.key === 'Enter'){
+//     if(itemValue === ""){
+//       emptyMessage()
+//       removeMessage()
+//     }else if(itemValue !== "" && arrayItems.includes(itemValue)){
+//       createMessageRepeatItem()
+//       removeMessage()
+//     }else if(!arrayItems.includes(itemValue)) {
+//       index++
+//       createItem(itemValue, index)
+//       arrayItems.push(itemValue)
+//       itemInput.value = ""
+//     }
+//   }
+// }
+
+function emptyMessage(){
+  const warningDiv = document.querySelector('#warningDiv')
+  const p = document.createElement('p')
+  const text = document.createTextNode('Por favor ingrese un item')
+  warningDiv.setAttribute("class", "linset-y-2.5 top-0 absolute animate-bounce bg-red-500 rounded-full text-white p-2")
+  warningDiv.appendChild(p)
+  p.appendChild(text)
 }
 
 function createItem(itemValue, id) {
@@ -29,7 +68,7 @@ function createItem(itemValue, id) {
   const textbutton = document.createTextNode("X")
   input.setAttribute("type", "checkbox")
   button.appendChild(textbutton)
-  div.setAttribute("class", "flex justify-between")
+  div.setAttribute("class", "flex justify-between items-center")
   div.setAttribute("id", `div${id}`)
   button.setAttribute("class", "bg-red-500 hover:bg-red-700 text-white font-bold p-2 rounded-full")
   button.setAttribute("id", `button${id}`)
@@ -73,11 +112,11 @@ function createMessageRepeatItem() {
   p.appendChild(text)
 }
 
-function removeMessageRepeatItem() {
+function removeMessage() {
   setTimeout(() => {
     const warningDiv = document.querySelector('#warningDiv')
     warningDiv.setAttribute("class", "")
     warningDiv.textContent = ""
-    item.value = ""
+    itemInput.value = ""
   }, 3000);
 }
