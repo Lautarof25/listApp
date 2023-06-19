@@ -4,17 +4,17 @@ const list = document.querySelector("#list")
 item.addEventListener("keyup", addItemKeyboard)
 
 let arrayItems = []
-let arrayLength = arrayItems.length
+let index = 0
 
 function addItemKeyboard(e) {
-  arrayLength = arrayItems.length
   let itemValue = normalizeItemValue(item.value)
   if (e.key === 'Enter' && arrayItems.includes(itemValue)) {
     createMessageRepeatItem()
     removeMessageRepeatItem()
   }
   if (e.key === 'Enter' && !arrayItems.includes(itemValue)) {
-    createItem(itemValue, arrayLength)
+    index++
+    createItem(itemValue, index)
     arrayItems.push(itemValue)
     item.value = ""
   }
@@ -33,7 +33,7 @@ function createItem(itemValue, id) {
   div.setAttribute("id", `div${id}`)
   button.setAttribute("class", "bg-red-500 hover:bg-red-700 text-white font-bold p-2 rounded-full")
   button.setAttribute("id", `button${id}`)
-  li.setAttribute("id", `li${id}`)
+  input.setAttribute("id", `checkbox${id}`)
   div.appendChild(input)
   div.appendChild(li)
   div.appendChild(button)
@@ -41,10 +41,20 @@ function createItem(itemValue, id) {
   list.appendChild(div)
 }
 
+function itemCompleted(e){
+  let checkboxID = `${e.target.id}`
+  const nextElementChk = document.getElementById(checkboxID)
+  if (checkboxID.includes("checkbox") && e.target.checked) {
+    nextElementChk.nextElementSibling.classList.add('line-through')
+  }else {
+    nextElementChk.nextElementSibling.classList.remove('line-through')
+  }
+}
+
 function removeItem(e) {
   let buttonId = `${e.target.id}`
-  let arrayItem = document.getElementById(buttonId).previousElementSibling.textContent
   if (buttonId.includes("button")) {
+    let arrayItem = document.getElementById(buttonId).previousElementSibling.textContent
     arrayItems = arrayItems.filter(item => item !== arrayItem)
       buttonId = buttonId.at(-1)
       document.querySelector(`#div${buttonId}`).remove()
@@ -52,6 +62,7 @@ function removeItem(e) {
 }
 
 list.addEventListener("click", removeItem)
+list.addEventListener("change", itemCompleted)
 
 function createMessageRepeatItem() {
   const warningDiv = document.querySelector('#warningDiv')
