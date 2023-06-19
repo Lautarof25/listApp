@@ -19,29 +19,34 @@
       ListApp</h1>
     <section>
 
-      <div class="flex justify-center items-center mb-4">
-        <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4">
-        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-500">Lista de
-          compras</label>
+      <div class="flex justify-between items-center items-center mb-4 flex-col">
+        <label for="checkboxGroceries" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-500">
+          <input id="checkboxGroceries" type="checkbox" class="w-4 h-4"> Lista de compras
+        </label>
+        <label for="checkboxToDo" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-500">
+          <input id="checkboxToDo" type="checkbox" class="w-4 h-4">Lista de tareas
+        </label>
+        
       </div>
 
       <div id="inputs" class="flex justify-center items-center gap-2">
 
 
-          <input type="text" id="itemInput"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Jabón" required>
-            
-          <button id="buttonAdd" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full text-xl">
-            +
-          </button>
+        <input type="text" id="itemInput"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Estudiar ... Detergente" required>
+
+        <button id="buttonAdd"
+          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full text-xl drop-shadow-lg	">
+          +
+        </button>
 
       </div>
 
     </section>
 
     <section class="">
-      
+
       <ul id="list" class="flex justify-between	w-full w-full flex-col p-2">
 
       </ul>

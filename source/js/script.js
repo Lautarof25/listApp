@@ -3,7 +3,6 @@ const list = document.querySelector("#list")
 const buttonAdd = document.querySelector("#buttonAdd")
 
 buttonAdd.addEventListener("click", addItemButton)
-// itemInput.addEventListener("input", addItemKeyboard)
 
 let arrayItems = []
 let index = 0
@@ -32,24 +31,6 @@ function addItemButton() {
   
 }
 
-// function addItemKeyboard(e) {
-//   let itemValue = normalizeItemValue(itemInput.value)
-//   if(e.key === 'Enter'){
-//     if(itemValue === ""){
-//       emptyMessage()
-//       removeMessage()
-//     }else if(itemValue !== "" && arrayItems.includes(itemValue)){
-//       createMessageRepeatItem()
-//       removeMessage()
-//     }else if(!arrayItems.includes(itemValue)) {
-//       index++
-//       createItem(itemValue, index)
-//       arrayItems.push(itemValue)
-//       itemInput.value = ""
-//     }
-//   }
-// }
-
 function emptyMessage(){
   const warningDiv = document.querySelector('#warningDiv')
   const p = document.createElement('p')
@@ -68,16 +49,36 @@ function createItem(itemValue, id) {
   const textbutton = document.createTextNode("X")
   input.setAttribute("type", "checkbox")
   button.appendChild(textbutton)
-  div.setAttribute("class", "flex justify-between items-center")
+  div.setAttribute("class", "flex justify-between items-center mb-1")
   div.setAttribute("id", `div${id}`)
-  button.setAttribute("class", "bg-red-500 hover:bg-red-700 text-white font-bold p-2 rounded-full")
+  button.setAttribute("class", "bg-red-500 hover:bg-red-700 text-white p-1 rounded")
+  li.setAttribute("class", "absolute ml-5")
+  li.setAttribute("contenteditable", "true")
   button.setAttribute("id", `button${id}`)
   input.setAttribute("id", `checkbox${id}`)
+  li.setAttribute("id", `li${id}`)
   div.appendChild(input)
   div.appendChild(li)
   div.appendChild(button)
   li.appendChild(text)
   list.appendChild(div)
+
+ 
+}
+// Falta terminar
+function editItem(liId){
+  let tempContent = li.textContent
+  li.addEventListener("focusout", function(){
+
+    if(li.textContent === ''){
+      li.textContent = tempContent
+      itemInput.focus()
+    }else {
+      arrayItems = arrayItems.filter(item => item !== tempContent)
+      tempContent = normalizeItemValue(li.textContent)
+      arrayItems.push(tempContent)
+    }
+  })
 }
 
 function itemCompleted(e){
