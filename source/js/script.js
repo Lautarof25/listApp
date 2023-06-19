@@ -69,7 +69,7 @@ function createItem(itemValue, id) {
 function editItem(liId){
   let tempContent = li.textContent
   li.addEventListener("focusout", function(){
-
+    
     if(li.textContent === ''){
       li.textContent = tempContent
       itemInput.focus()
